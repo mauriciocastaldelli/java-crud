@@ -10,7 +10,7 @@ import java.util.List;
 @ApplicationScoped
 public class UsuarioDAO {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "meuPU")
     private EntityManager em;
 
     public void salvar(Usuario user){

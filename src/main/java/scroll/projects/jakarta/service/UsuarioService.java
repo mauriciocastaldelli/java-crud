@@ -1,5 +1,6 @@
 package scroll.projects.jakarta.service;
 
+import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import scroll.projects.jakarta.dao.UsuarioDAO;
@@ -7,7 +8,7 @@ import scroll.projects.jakarta.model.Usuario;
 
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class UsuarioService {
 
     @Inject
