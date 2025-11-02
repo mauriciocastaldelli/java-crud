@@ -6,7 +6,7 @@
         <class>scroll.projects.jakarta.model.Usuario</class>
 
         <properties>
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
             <property name="jakarta.persistence.jdbc.show_sql" value="true"/>
             <property name="jakarta.persistence.jdbc.format_sql" value="true"/>
         </properties>

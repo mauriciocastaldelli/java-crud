@@ -8,6 +8,8 @@
     <title>Gerenciador de usuários</title>
 </h:head>
 <h:body>
+    <h:messages globalOnly="true" />
+
     <h1>Gerenciador de usuários</h1>
     <h:form>
         <h2>Novo usuário</h2>
@@ -22,25 +24,49 @@
         </h:panelGrid>
 
         <h:commandButton value="Salvar" action="#{usuarioBean.salvar}" />
-        <h:messages globalOnly="true" />
     </h:form>
 
     <hr/>
 
     <h1>Usuários Cadastrados</h1>
-    <h:dataTable value="#{usuarioBean.usuarios}" var="u" border="1">
-        <h:column>
-            <f:facet name="header">ID</f:facet>
-            #{u.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Nome</f:facet>
-            #{u.name}
-        </h:column>
-        <h:column>
-            <f:facet name="header">E-mail</f:facet>
-            #{u.email}
-        </h:column>
-    </h:dataTable>
+    <h:form>
+        <h:dataTable value="#{usuarioBean.usuarios}" var="u" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{u.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{u.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                #{u.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ações</f:facet>
+                <h:commandButton value="Editar" action="#{usuarioBean.selecionarUsuario(u)}">
+                    <f:ajax render="editarForm" />
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+    <hr/>
+
+    <h:form id="editarForm">
+        <h:panelGroup rendered="#{usuarioBean.usuarioSelecionado != null}">
+            <h1>Editar usuário #{usuarioSelecionado.id}</h1>
+
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nome:"/>
+                <h:inputText value="#{usuarioBean.usuarioSelecionado.name}" />
+
+                <h:outputLabel value="E-mail:"/>
+                <h:inputText value="#{usuarioBean.usuarioSelecionado.email}" />
+            </h:panelGrid>
+            <h:commandButton value="Salvar" action="#{usuarioBean.atualizar}" />
+        </h:panelGroup>
+    </h:form>
 </h:body>
 </html>

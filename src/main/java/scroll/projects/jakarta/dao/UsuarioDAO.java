@@ -1,5 +1,6 @@
 package scroll.projects.jakarta.dao;
 
+import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -7,7 +8,7 @@ import scroll.projects.jakarta.model.Usuario;
 
 import java.util.List;
 
-@ApplicationScoped
+@Stateless
 public class UsuarioDAO {
 
     @PersistenceContext(unitName = "meuPU")

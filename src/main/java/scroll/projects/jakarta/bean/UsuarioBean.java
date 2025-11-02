@@ -22,6 +22,7 @@ public class UsuarioBean implements Serializable {
 
     private String name;
     private String email;
+    private Usuario usuarioSelecionado;
 
     public void salvar(){
 
@@ -36,6 +37,18 @@ public class UsuarioBean implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar usuário!", e.getMessage()));
         }
 
+    }
+
+    public void atualizar(){
+
+        try {
+            usuarioService.atualizar(usuarioSelecionado);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário atualizado com sucesso!", null));
+        } catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar usuário!", e.getMessage()));
+        }
     }
 
     public String getName() {
@@ -58,5 +71,13 @@ public class UsuarioBean implements Serializable {
     // o JSF procura automaticamente esse get quando #{usuarioBean.usuarios}
     public List<Usuario> getUsuarios() {
         return usuarioService.listar();
+    }
+
+    public Usuario getUsuarioSelecionado() {
+        return usuarioSelecionado;
+    }
+
+    public void selecionarUsuario(Usuario u) {
+        this.usuarioSelecionado = u;
     }
 }
