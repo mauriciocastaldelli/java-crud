@@ -36,11 +36,9 @@ public class UsuarioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao salvar usuário!", e.getMessage()));
         }
-
     }
 
     public void atualizar(){
-
         try {
             usuarioService.atualizar(usuarioSelecionado);
             FacesContext.getCurrentInstance().addMessage(null,
@@ -48,6 +46,18 @@ public class UsuarioBean implements Serializable {
         } catch (Exception e){
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao atualizar usuário!", e.getMessage()));
+        }
+    }
+
+    public void remover(){
+        try {
+            usuarioService.remover(usuarioSelecionado);
+            usuarioSelecionado = null;
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário deletado com sucesso!", null));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao deletar o usuário!", null));
         }
     }
 

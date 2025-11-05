@@ -33,4 +33,8 @@ public class UsuarioService {
     public Usuario pesquisar(Long id){
         return usuarioDAO.pesquisar(id);
     }
+
+    public void remover(Usuario user) {
+        usuarioDAO.deletar(user);
+    }
 }
